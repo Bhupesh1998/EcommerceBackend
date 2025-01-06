@@ -1,0 +1,8 @@
+.node_modules
+nbproject
+coverage
+docs
+*.sqlite
+.env.live
+.env
+package-lock.json
