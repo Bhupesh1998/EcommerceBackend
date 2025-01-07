@@ -43,6 +43,10 @@ const User = require("./Models/user");
 const Order = require("./Models/order");
 const { log } = require("console");
 
+app.get('/', (req, res) => {
+  res.send('Hello from Express!');
+});
+
 const sendVerificationEmail = async (email, verificationToken) => {
   // Create a Nodemailer transporter
   const transporter = nodemailer.createTransport({
