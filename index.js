@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const envinviromets = require('dotenv').config();
 
 const app = express();
-const port = envinviromets.parsed.SERVER_PORT || 8000;
+const port = process.env.SERVER_PORT || 8000;
 const cors = require("cors");
 app.use(cors());
 
@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 
 const jwt = require("jsonwebtoken");
 app.listen(port, () => {
-  console.log(`Server is running on port ${envinviromets.parsed.SERVER_PORT}`);
+  console.log(`Server is running on port ${process.env.SERVER_PORT}`);
 });
 
-mongoose.connect(`${envinviromets.parsed.DATABASE_URL}`, {
+mongoose.connect(process.env.DATABASE_URL, {
   tls: true,
   tlsAllowInvalidCertificates: false,
 }).then(() => {
@@ -53,8 +53,8 @@ const sendVerificationEmail = async (email, verificationToken) => {
     // Configure the email service or SMTP details here
     service: "gmail",
     auth: {
-      user: `${envinviromets.parsed.EMAIL_USER}`,
-      pass: `${envinviromets.parsed.EMAIL_PASSWORD}`,
+      user: `${process.env.EMAIL_USER}`,
+      pass: `${process.env.EMAIL_PASSWORD}`,
     },
   });
 
